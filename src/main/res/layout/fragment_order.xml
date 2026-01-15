@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"> <!-- ← CORREGIDO -->
+
+        <!-- Texto que indica el postre elegido -->
+        <TextView
+            android:id="@+id/text_ordered_dessert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="You ordered a ..."
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Texto de instrucciones -->
+        <TextView
+            android:id="@+id/order_intro_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_delivery_method"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Campos de entrada: Nombre -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name:"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="8dp"/>
+
+            <EditText
+                android:id="@+id/edit_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Enter your name"
+                android:inputType="textPersonName"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
+        </LinearLayout>
+
+        <!-- Campos de entrada: Dirección -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address:"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="8dp"/>
+
+            <EditText
+                android:id="@+id/edit_address"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Enter your address"
+                android:inputType="textPostalAddress"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
+        </LinearLayout>
+
+        <!-- Campos de entrada: Teléfono -->
+        <!-- Campos de entrada: Teléfono con Spinner de prefijo -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone:"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="8dp"/>
+
+            <!-- Spinner para prefijo de país -->
+            <Spinner
+                android:id="@+id/spinner_country_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/country_codes"
+                android:spinnerMode="dropdown"/>
+
+            <!-- EditText para el número de teléfono -->
+            <EditText
+                android:id="@+id/edit_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Enter your phone"
+                android:inputType="phone"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+
+        <!-- Campos de entrada: Nota adicional -->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Note:"
+                android:layout_gravity="top"
+                android:layout_marginEnd="8dp"/>
+
+            <EditText
+                android:id="@+id/edit_note"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Additional note"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
+        </LinearLayout>
+
+        <!-- Opciones de entrega -->
+        <RadioGroup
+            android:id="@+id/delivery_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/sameday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/same_day_messenger_service" />
+
+            <RadioButton
+                android:id="@+id/nextday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/next_day_ground_delivery" />
+
+            <RadioButton
+                android:id="@+id/pickup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/pick_up" />
+
+        </RadioGroup>
+
+    </LinearLayout>
+</ScrollView>
