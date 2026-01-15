@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 public class DessertListFragment extends Fragment {
 
+    private static final String SELECTED_DESSERT = "selected_dessert";
+
     public DessertListFragment() { }
 
     @Nullable
@@ -38,28 +40,24 @@ public class DessertListFragment extends Fragment {
         listView.setOnItemClickListener((parent, view1, position, id) -> {
             Dessert selectedDessert = desserts.get(position);
 
-            // Mostrar Toast
-            Toast.makeText(requireContext(),
-                    "You ordered " + selectedDessert.getName(),
-                    Toast.LENGTH_SHORT).show();
-
-            // Crear OrderFragment y pasar nombre del postre
-            OrderFragment orderFragment = new OrderFragment();
+            // Guardamos en Bundle para restaurar tras rotación
             Bundle args = new Bundle();
-            args.putString("selected_dessert", selectedDessert.getName());
+            args.putString(SELECTED_DESSERT, selectedDessert.getName());
+
+            OrderFragment orderFragment = new OrderFragment();
             orderFragment.setArguments(args);
 
-            // Detectar landscape
             View orderContainer = requireActivity().findViewById(R.id.fragment_order_container);
+
             if (orderContainer != null) {
-                // Landscape: reemplazamos solo el OrderFragment
+                // Landscape → reemplazar solo el OrderFragment
                 requireActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.fragment_order_container, orderFragment)
                         .commit();
             } else {
-                // Portrait: reemplazamos el container y agregamos al back stack
+                // Portrait → reemplazar container principal
                 requireActivity()
                         .getSupportFragmentManager()
                         .beginTransaction()
@@ -67,6 +65,10 @@ public class DessertListFragment extends Fragment {
                         .addToBackStack(null)
                         .commit();
             }
+
+            Toast.makeText(requireContext(),
+                    "You ordered " + selectedDessert.getName(),
+                    Toast.LENGTH_SHORT).show();
         });
 
         return view;
